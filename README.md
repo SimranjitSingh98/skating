@@ -1,2 +1,2 @@
 # skating
-Italian speed skating results from FISR (DB + Stramlit)
+Italian speed skating results from FISR (DB + Stremlit)
