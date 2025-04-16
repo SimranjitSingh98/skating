@@ -66,6 +66,8 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 import seaborn as sns
+from dotenv import load_dotenv
+import os
 
 # Funzione per convertire il formato 'hh.mm.ss.xxx' in secondi
 def convert_time_to_seconds(time_str):
@@ -92,7 +94,14 @@ def convert_time_to_seconds(time_str):
 # Funzione per connettersi a MongoDB
 def connect_to_db():
     # Modifica questa stringa con i tuoi dettagli di connessione
-    client = pymongo.MongoClient("mongodb+srv://sannys387:Xc7oetTs2Pv3kpGG@skatingcluster.n9nuu.mongodb.net/?retryWrites=true&w=majority&appName=SkatingCluster")
+    load_dotenv()
+
+    # Ottieni l'URI dal file .env
+    mongodb_uri = os.getenv("../MONGODB_URI")
+
+    # Usa l'URI per connetterti a MongoDB
+    client = pymongo.MongoClient(mongodb_uri)
+
     db = client["skating_database"]  # Sostituisci con il nome del tuo database
     try:
         client.admin.command('ping')
